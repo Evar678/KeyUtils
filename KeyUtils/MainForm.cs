@@ -226,7 +226,7 @@ namespace KeyUtils
 					break;
 				
 				case 1:
-					par = new DecryptionParameters(fileArray, TXT_Extra2.Text);
+					par = new DecryptionParameters(fileArray, file2, TXT_Extra2.Text);
 					break;
 
 				case 2:

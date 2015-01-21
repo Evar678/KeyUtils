@@ -176,22 +176,6 @@ namespace KeyUtils
 			"Unknown x86 Compatible"
 		};
 
-		//All 32 processors repeated until 17 characters or more in length, and then trimmed to 17 characters exactly
-		//(With duplicates removed, that leaves 29 processor types in total)
-		static string[] processorsTrim1 =
-		{
-			"AMD (unknown)AMD ", "AMD AthlonAMD Ath", "AMD K5AMD K5AMD K",
-			"AMD K6-2AMD K6-2A", "AMD K6-3AMD K6-3A", "AMD K6AMD K6AMD K",
-			"AuthenticAMDAuthe", "Cyrix (unknown)Cy", "Cyrix 6x86Cyrix 6",
-			"Cyrix 6x86mx/MIIC", "Cyrix GXmCyrix GX", "CyrixInsteadCyrix",
-			"Cyrix Media GXCyr", "GenuineIntelGenui", "Intel (unknown)In",
-			"Intel (unknown, P", "Intel 486 classIn", "Intel Core 2Intel",
-			"Intel CoreIntel C", "Intel Itanium 2In", "Intel ItaniumInte",
-			"Intel Pentium 4In", "Intel Pentium Cel", "Intel Pentium III",
-			"Intel PentiumInte", "Intel Pentium MIn", "Intel Pentium MMX",
-			"Intel Pentium Pro", "Unknown x86 Compa"
-		};
-
 		//Quick lookup tables for optimized performance
 		static byte[] validCharTable =
 		{
@@ -253,7 +237,6 @@ namespace KeyUtils
 
 		public static void decryptMode0(DecryptionParameters param, DecryptionResult result)
 		{
-			//result.finishedWithSuccess(GetMACAddress(), "", x.ToString());
 			result.startTimer();
 
 			//Read keydats
@@ -336,7 +319,6 @@ namespace KeyUtils
 				{
 					xored[b] = (byte)(keydats[a][b] ^ xor[b]);
 
-					//the Containts method in a hashset is super friggin quick. Like seriously.
 					if(validCharTable[xored[b]] == 0)
 						break;
 				}
@@ -355,7 +337,58 @@ namespace KeyUtils
 
 		public static void decryptMode1(DecryptionParameters param, DecryptionResult result)
 		{
-			result.finishedWithError(10, "Decryption mode not yet implemented.");
+			//Read in the unknown keydats
+			List<byte[]> UnknownKeydats = readKeyDats(param, result);
+
+			if (result.completed)
+				return;
+
+			param.keyDatPaths = new string[] { param.otherInfo[0] };
+			byte[] knownKeydat = readKeyDats(param, result)[0];
+
+			if (result.completed)
+				return;
+
+			//Calculate the xor value
+			byte[] xor = new byte[17];
+
+			//Xor known keydat with known key
+			for (int a = 0; a < 17; a++)
+				xor[a] = (byte)(knownKeydat[a] ^ param.otherInfo[1][a]);
+
+			int upToIndex = 16;
+			string message = String.Empty;
+			bool hasFailed = false;
+
+			for (int a = 0; a < UnknownKeydats.Count; a++)
+			{
+				message += "Keydat #" + (a + 1) + ":\n";
+				string key = String.Empty;
+
+				for (int b = 0; b <= upToIndex; b++)
+				{
+					key += (char)(UnknownKeydats[a][b] ^ xor[b]);
+
+					if (!hasFailed && validCharTable[key[b]] == 0)
+					{
+						hasFailed = true;
+						upToIndex = b;
+						message = "Keydat decryption failed: Known key did not match up with other keydats. Results probably aren't correct.\n\n" + message;
+
+						break;
+					}
+				}
+
+				if (!hasFailed)
+					key = formatKey(key);
+
+				message += "Recovered Key: " + key + "\n\n";
+			}
+
+			if (hasFailed)
+				result.finishedWithError(2, ("Error code 2: Decryption Failure\n\n" + message).Split('\n'));
+			else
+				result.finishedWithSuccess(message.Split('\n'));
 		}
 
 		public static void decryptMode2(DecryptionParameters param, DecryptionResult result)
@@ -429,7 +462,7 @@ namespace KeyUtils
 			{
 				possibleChars[a] = new char[17][];
 				possibleChars[a][0] = new char[] { 'A' };
-				possibleChars[a][1] = new char[] { 'A', 'B', 'C', 'D', 'E' };
+				possibleChars[a][1] = new char[] { 'A', 'B', 'C', 'D', 'E', 'F' };
 
 				for (int b = 2; b < 17; b++)
 					possibleChars[a][b] = keyChars.ToCharArray();
@@ -438,7 +471,6 @@ namespace KeyUtils
 			return possibleChars;
 		}
 
-		//This function to be refined later
 		private static char[][][] narrowPossibleChars(char[][][] possibleChars, List<byte[]> keyDats, int keydatCount)
 		{
 			int a = 0, b = 0, c = 0, d = 0;
