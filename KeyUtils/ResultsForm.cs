@@ -1,13 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Drawing;
-using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace KeyUtils
 {

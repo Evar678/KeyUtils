@@ -471,6 +471,7 @@ namespace KeyUtils
 			return possibleChars;
 		}
 
+		//Debating whether or not to keep this.
 		private static char[][][] narrowPossibleChars(char[][][] possibleChars, List<byte[]> keyDats, int keydatCount)
 		{
 			int a = 0, b = 0, c = 0, d = 0;

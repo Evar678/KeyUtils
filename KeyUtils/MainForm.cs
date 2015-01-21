@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Data;
 using System.Drawing;
-using Zxcvbn;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using Zxcvbn;
 
 namespace KeyUtils
 {
