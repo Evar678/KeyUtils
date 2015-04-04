@@ -46,10 +46,12 @@
 			this.LBL_Mode = new System.Windows.Forms.Label();
 			this.BTN_Mode = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.BTN_ConvBack = new System.Windows.Forms.Button();
+			this.BTN_Launch = new System.Windows.Forms.Button();
+			this.BTN_ConvTo = new System.Windows.Forms.Button();
 			this.LBL_Entropy = new System.Windows.Forms.Label();
 			this.TXT_1 = new System.Windows.Forms.TextBox();
-			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.BTN_Gen = new System.Windows.Forms.Button();
 			this.TXT_BLID2 = new System.Windows.Forms.TextBox();
 			this.TXT_FK2 = new System.Windows.Forms.TextBox();
@@ -59,22 +61,22 @@
 			this.LBL_3 = new System.Windows.Forms.Label();
 			this.TXT_FK1 = new System.Windows.Forms.TextBox();
 			this.LBL_2 = new System.Windows.Forms.Label();
-			this.tabPage5 = new System.Windows.Forms.TabPage();
-			this.DLG_Open = new System.Windows.Forms.OpenFileDialog();
-			this.label1 = new System.Windows.Forms.Label();
-			this.TXT_ProcessorSaved = new System.Windows.Forms.TextBox();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.button1 = new System.Windows.Forms.Button();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.TXT_BLLoc = new System.Windows.Forms.TextBox();
+			this.BTN_Update3 = new System.Windows.Forms.Button();
 			this.BTN_Update1 = new System.Windows.Forms.Button();
-			this.BTN_Update2 = new System.Windows.Forms.Button();
-			this.BTN_ConvTo = new System.Windows.Forms.Button();
-			this.BTN_Launch = new System.Windows.Forms.Button();
-			this.BTN_ConvBack = new System.Windows.Forms.Button();
+			this.TXT_BLLoc = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.TXT_ProcessorSaved = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.DLG_Open = new System.Windows.Forms.OpenFileDialog();
 			this.TAB_0.SuspendLayout();
 			this.tabPage1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tabPage4.SuspendLayout();
-			this.tabPage5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// TAB_0
@@ -83,7 +85,6 @@
 			this.TAB_0.Controls.Add(this.tabPage2);
 			this.TAB_0.Controls.Add(this.tabPage3);
 			this.TAB_0.Controls.Add(this.tabPage4);
-			this.TAB_0.Controls.Add(this.tabPage5);
 			this.TAB_0.Cursor = System.Windows.Forms.Cursors.Default;
 			this.TAB_0.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TAB_0.Location = new System.Drawing.Point(0, 0);
@@ -262,28 +263,48 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.BTN_ConvBack);
+			this.tabPage2.Controls.Add(this.BTN_Launch);
+			this.tabPage2.Controls.Add(this.BTN_ConvTo);
+			this.tabPage2.Controls.Add(this.LBL_Entropy);
+			this.tabPage2.Controls.Add(this.TXT_1);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage2.Size = new System.Drawing.Size(269, 331);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "v1 Keydat";
+			this.tabPage2.TabIndex = 2;
+			this.tabPage2.Text = "v2 Keydat";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// tabPage3
+			// BTN_ConvBack
 			// 
-			this.tabPage3.Controls.Add(this.BTN_ConvBack);
-			this.tabPage3.Controls.Add(this.BTN_Launch);
-			this.tabPage3.Controls.Add(this.BTN_ConvTo);
-			this.tabPage3.Controls.Add(this.LBL_Entropy);
-			this.tabPage3.Controls.Add(this.TXT_1);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(269, 331);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "v2 Keydat";
-			this.tabPage3.UseVisualStyleBackColor = true;
+			this.BTN_ConvBack.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BTN_ConvBack.Location = new System.Drawing.Point(75, 231);
+			this.BTN_ConvBack.Name = "BTN_ConvBack";
+			this.BTN_ConvBack.Size = new System.Drawing.Size(118, 78);
+			this.BTN_ConvBack.TabIndex = 4;
+			this.BTN_ConvBack.Text = "Convert back to Keydat v1";
+			this.BTN_ConvBack.UseVisualStyleBackColor = true;
+			// 
+			// BTN_Launch
+			// 
+			this.BTN_Launch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BTN_Launch.Location = new System.Drawing.Point(75, 126);
+			this.BTN_Launch.Name = "BTN_Launch";
+			this.BTN_Launch.Size = new System.Drawing.Size(118, 78);
+			this.BTN_Launch.TabIndex = 3;
+			this.BTN_Launch.Text = "Launch Blockland";
+			this.BTN_Launch.UseVisualStyleBackColor = true;
+			// 
+			// BTN_ConvTo
+			// 
+			this.BTN_ConvTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.BTN_ConvTo.Location = new System.Drawing.Point(75, 21);
+			this.BTN_ConvTo.Name = "BTN_ConvTo";
+			this.BTN_ConvTo.Size = new System.Drawing.Size(118, 78);
+			this.BTN_ConvTo.TabIndex = 2;
+			this.BTN_ConvTo.Text = "Convert to Keydat v2";
+			this.BTN_ConvTo.UseVisualStyleBackColor = true;
 			// 
 			// LBL_Entropy
 			// 
@@ -302,24 +323,24 @@
 			this.TXT_1.TabIndex = 0;
 			this.TXT_1.TextChanged += new System.EventHandler(this.TXT_1_TextChanged);
 			// 
-			// tabPage4
+			// tabPage3
 			// 
-			this.tabPage4.Controls.Add(this.BTN_Gen);
-			this.tabPage4.Controls.Add(this.TXT_BLID2);
-			this.tabPage4.Controls.Add(this.TXT_FK2);
-			this.tabPage4.Controls.Add(this.LBL_5);
-			this.tabPage4.Controls.Add(this.TXT_BLID1);
-			this.tabPage4.Controls.Add(this.LBL_4);
-			this.tabPage4.Controls.Add(this.LBL_3);
-			this.tabPage4.Controls.Add(this.TXT_FK1);
-			this.tabPage4.Controls.Add(this.LBL_2);
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
-			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(269, 331);
-			this.tabPage4.TabIndex = 3;
-			this.tabPage4.Text = "Others";
-			this.tabPage4.UseVisualStyleBackColor = true;
+			this.tabPage3.Controls.Add(this.BTN_Gen);
+			this.tabPage3.Controls.Add(this.TXT_BLID2);
+			this.tabPage3.Controls.Add(this.TXT_FK2);
+			this.tabPage3.Controls.Add(this.LBL_5);
+			this.tabPage3.Controls.Add(this.TXT_BLID1);
+			this.tabPage3.Controls.Add(this.LBL_4);
+			this.tabPage3.Controls.Add(this.LBL_3);
+			this.tabPage3.Controls.Add(this.TXT_FK1);
+			this.tabPage3.Controls.Add(this.LBL_2);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage3.Size = new System.Drawing.Size(269, 331);
+			this.tabPage3.TabIndex = 3;
+			this.tabPage3.Text = "Other Tools";
+			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
 			// BTN_Gen
 			// 
@@ -415,27 +436,98 @@
 			this.LBL_2.Text = "Create a fake key from a BLID!";
 			this.LBL_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// tabPage5
+			// tabPage4
 			// 
-			this.tabPage5.Controls.Add(this.BTN_Update2);
-			this.tabPage5.Controls.Add(this.BTN_Update1);
-			this.tabPage5.Controls.Add(this.TXT_BLLoc);
-			this.tabPage5.Controls.Add(this.label2);
-			this.tabPage5.Controls.Add(this.TXT_ProcessorSaved);
-			this.tabPage5.Controls.Add(this.label1);
-			this.tabPage5.Location = new System.Drawing.Point(4, 22);
-			this.tabPage5.Name = "tabPage5";
-			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage5.Size = new System.Drawing.Size(269, 331);
-			this.tabPage5.TabIndex = 4;
-			this.tabPage5.Text = "Options";
-			this.tabPage5.UseVisualStyleBackColor = true;
+			this.tabPage4.Controls.Add(this.button1);
+			this.tabPage4.Controls.Add(this.textBox1);
+			this.tabPage4.Controls.Add(this.label2);
+			this.tabPage4.Controls.Add(this.BTN_Update3);
+			this.tabPage4.Controls.Add(this.BTN_Update1);
+			this.tabPage4.Controls.Add(this.TXT_BLLoc);
+			this.tabPage4.Controls.Add(this.label3);
+			this.tabPage4.Controls.Add(this.TXT_ProcessorSaved);
+			this.tabPage4.Controls.Add(this.label1);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage4.Size = new System.Drawing.Size(269, 331);
+			this.tabPage4.TabIndex = 4;
+			this.tabPage4.Text = "Options";
+			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
-			// DLG_Open
+			// button1
 			// 
-			this.DLG_Open.DefaultExt = "dat";
-			this.DLG_Open.Filter = ".Dat file|*.dat|All files|*.*";
-			this.DLG_Open.Multiselect = true;
+			this.button1.Location = new System.Drawing.Point(101, 169);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(66, 23);
+			this.button1.TabIndex = 8;
+			this.button1.Text = "Update";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(55, 143);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ReadOnly = true;
+			this.textBox1.Size = new System.Drawing.Size(159, 20);
+			this.textBox1.TabIndex = 7;
+			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(64, 120);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(141, 20);
+			this.label2.TabIndex = 6;
+			this.label2.Text = "Saved Mac Address:";
+			// 
+			// BTN_Update3
+			// 
+			this.BTN_Update3.Location = new System.Drawing.Point(101, 274);
+			this.BTN_Update3.Name = "BTN_Update3";
+			this.BTN_Update3.Size = new System.Drawing.Size(66, 23);
+			this.BTN_Update3.TabIndex = 5;
+			this.BTN_Update3.Text = "Update";
+			this.BTN_Update3.UseVisualStyleBackColor = true;
+			// 
+			// BTN_Update1
+			// 
+			this.BTN_Update1.Location = new System.Drawing.Point(101, 64);
+			this.BTN_Update1.Name = "BTN_Update1";
+			this.BTN_Update1.Size = new System.Drawing.Size(66, 23);
+			this.BTN_Update1.TabIndex = 4;
+			this.BTN_Update1.Text = "Update";
+			this.BTN_Update1.UseVisualStyleBackColor = true;
+			// 
+			// TXT_BLLoc
+			// 
+			this.TXT_BLLoc.Location = new System.Drawing.Point(55, 248);
+			this.TXT_BLLoc.Name = "TXT_BLLoc";
+			this.TXT_BLLoc.ReadOnly = true;
+			this.TXT_BLLoc.Size = new System.Drawing.Size(159, 20);
+			this.TXT_BLLoc.TabIndex = 3;
+			this.TXT_BLLoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Location = new System.Drawing.Point(43, 225);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(182, 20);
+			this.label3.TabIndex = 2;
+			this.label3.Text = "Saved Blockland Location:";
+			// 
+			// TXT_ProcessorSaved
+			// 
+			this.TXT_ProcessorSaved.Location = new System.Drawing.Point(55, 38);
+			this.TXT_ProcessorSaved.Name = "TXT_ProcessorSaved";
+			this.TXT_ProcessorSaved.ReadOnly = true;
+			this.TXT_ProcessorSaved.Size = new System.Drawing.Size(159, 20);
+			this.TXT_ProcessorSaved.TabIndex = 1;
+			this.TXT_ProcessorSaved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// label1
 			// 
@@ -447,81 +539,11 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Saved Processor Name:";
 			// 
-			// TXT_ProcessorSaved
+			// DLG_Open
 			// 
-			this.TXT_ProcessorSaved.Location = new System.Drawing.Point(55, 38);
-			this.TXT_ProcessorSaved.Name = "TXT_ProcessorSaved";
-			this.TXT_ProcessorSaved.ReadOnly = true;
-			this.TXT_ProcessorSaved.Size = new System.Drawing.Size(159, 20);
-			this.TXT_ProcessorSaved.TabIndex = 1;
-			this.TXT_ProcessorSaved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(43, 129);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(182, 20);
-			this.label2.TabIndex = 2;
-			this.label2.Text = "Saved Blockland Location:";
-			// 
-			// TXT_BLLoc
-			// 
-			this.TXT_BLLoc.Location = new System.Drawing.Point(55, 152);
-			this.TXT_BLLoc.Name = "TXT_BLLoc";
-			this.TXT_BLLoc.ReadOnly = true;
-			this.TXT_BLLoc.Size = new System.Drawing.Size(159, 20);
-			this.TXT_BLLoc.TabIndex = 3;
-			this.TXT_BLLoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// BTN_Update1
-			// 
-			this.BTN_Update1.Location = new System.Drawing.Point(101, 64);
-			this.BTN_Update1.Name = "BTN_Update1";
-			this.BTN_Update1.Size = new System.Drawing.Size(66, 23);
-			this.BTN_Update1.TabIndex = 4;
-			this.BTN_Update1.Text = "Update";
-			this.BTN_Update1.UseVisualStyleBackColor = true;
-			// 
-			// BTN_Update2
-			// 
-			this.BTN_Update2.Location = new System.Drawing.Point(101, 178);
-			this.BTN_Update2.Name = "BTN_Update2";
-			this.BTN_Update2.Size = new System.Drawing.Size(66, 23);
-			this.BTN_Update2.TabIndex = 5;
-			this.BTN_Update2.Text = "Update";
-			this.BTN_Update2.UseVisualStyleBackColor = true;
-			// 
-			// BTN_ConvTo
-			// 
-			this.BTN_ConvTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BTN_ConvTo.Location = new System.Drawing.Point(75, 21);
-			this.BTN_ConvTo.Name = "BTN_ConvTo";
-			this.BTN_ConvTo.Size = new System.Drawing.Size(118, 78);
-			this.BTN_ConvTo.TabIndex = 2;
-			this.BTN_ConvTo.Text = "Convert to Keydat v2";
-			this.BTN_ConvTo.UseVisualStyleBackColor = true;
-			// 
-			// BTN_Launch
-			// 
-			this.BTN_Launch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BTN_Launch.Location = new System.Drawing.Point(75, 126);
-			this.BTN_Launch.Name = "BTN_Launch";
-			this.BTN_Launch.Size = new System.Drawing.Size(118, 78);
-			this.BTN_Launch.TabIndex = 3;
-			this.BTN_Launch.Text = "Launch Blockland";
-			this.BTN_Launch.UseVisualStyleBackColor = true;
-			// 
-			// BTN_ConvBack
-			// 
-			this.BTN_ConvBack.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BTN_ConvBack.Location = new System.Drawing.Point(75, 231);
-			this.BTN_ConvBack.Name = "BTN_ConvBack";
-			this.BTN_ConvBack.Size = new System.Drawing.Size(118, 78);
-			this.BTN_ConvBack.TabIndex = 4;
-			this.BTN_ConvBack.Text = "Convert back to Keydat v1";
-			this.BTN_ConvBack.UseVisualStyleBackColor = true;
+			this.DLG_Open.DefaultExt = "dat";
+			this.DLG_Open.Filter = ".Dat file|*.dat|All files|*.*";
+			this.DLG_Open.Multiselect = true;
 			// 
 			// MainForm
 			// 
@@ -537,12 +559,12 @@
 			this.TAB_0.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
+			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
 			this.tabPage4.PerformLayout();
-			this.tabPage5.ResumeLayout(false);
-			this.tabPage5.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -551,11 +573,10 @@
 
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.TabPage tabPage3;
 		public System.Windows.Forms.TabControl TAB_0;
 		private System.Windows.Forms.Label LBL_Mode;
 		private System.Windows.Forms.Button BTN_Mode;
-		private System.Windows.Forms.TabPage tabPage4;
+		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.Button BTN_Select1;
 		private System.Windows.Forms.Label LBL_1;
 		private System.Windows.Forms.Label LBL_Num;
@@ -580,16 +601,19 @@
 		private System.Windows.Forms.Button BTN_Decrypt;
 		private System.Windows.Forms.Label LBL_Entropy;
 		private System.Windows.Forms.TextBox TXT_1;
-		private System.Windows.Forms.TabPage tabPage5;
+		private System.Windows.Forms.TabPage tabPage4;
 		private System.Windows.Forms.TextBox TXT_ProcessorSaved;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox TXT_BLLoc;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Button BTN_Update2;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Button BTN_Update3;
 		private System.Windows.Forms.Button BTN_Update1;
 		private System.Windows.Forms.Button BTN_ConvBack;
 		private System.Windows.Forms.Button BTN_Launch;
 		private System.Windows.Forms.Button BTN_ConvTo;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Label label2;
 
 	}
 }

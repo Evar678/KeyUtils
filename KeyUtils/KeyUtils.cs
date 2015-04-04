@@ -15,12 +15,11 @@ namespace KeyUtils
 	class DecryptionResult
 	{
 		private bool _completed;
-		private double _progress;
 		private int _statuscode;
-		private DateTime start, end;
 
 		public string[] result;
 
+		//To make everything thread-safe
 		private object locker = new object();
 
 		public bool completed
@@ -28,16 +27,16 @@ namespace KeyUtils
 			get { return _completed; }
 		}
 
-		public double progress
-		{
-			get { return _progress; }
-		}
-
 		public int statuscode
 		{
 			get { return _statuscode; }
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DecryptionResult"/> class.
+		/// </summary>
+		/// <param name="statuscode">Statuscode to use. Defaults to 3 (Decryption not started)</param>
+		/// <param name="result">Optional text to use as the result text.</param>
 		public DecryptionResult(int statuscode = 3, params string[] result)
 		{
 			if(result != null)
@@ -46,89 +45,58 @@ namespace KeyUtils
 				this.result = new string[] { "Decryption not started." };
 
 			_completed = false;
-			_progress = 0.0;
 			_statuscode = statuscode;
 		}
 
-		public void startTimer()
+		/// <summary>
+		/// Set the result object to have finished the decryption successfully.
+		/// </summary>
+		/// <param name="detail">Success text to display to the user.</param>
+		public void finishedWithSuccess(params string[] detail)
 		{
-			start = DateTime.Now;
+			lock (locker)
+			{
+				_completed = true;
+				_statuscode = 1;
+
+				result = detail;
+			}
 		}
 
-		private void stopTimer()
-		{
-			end = DateTime.Now;
-		}
-
-		private double getTimerSeconds()
-		{
-			if (start == null)
-				throw new Exception("Timer not started.");
-
-			if(end == null)
-				return DateTime.Now.Subtract(start).TotalSeconds;
-
-			return end.Subtract(start).TotalSeconds;
-		}
-
+		/// <summary>
+		/// Set the result object to have finished the decryption unsuccessfully.
+		/// </summary>
+		/// <param name="errorcode">The error code.</param>
+		/// <param name="detail">Error text to display to the user.</param>
 		public void finishedWithError(int errorcode, params string[] detail)
 		{
 			lock(locker)
 			{
-				_progress = 0.0;
 				_completed = true;
-
 				_statuscode = -errorcode;
-				result = detail;
-
-				stopTimer();
-			}
-		}
-
-		public void finishedWithSuccess(params string[] detail)
-		{
-			lock(locker)
-			{
-				_progress = 0.0;
-				_completed = true;
-
-				_statuscode = 1;
 
 				result = detail;
-
-				stopTimer();
-			}
-		}
-
-		public void setProgress(double progress, string[] text = null)
-		{
-			lock(locker)
-			{
-				_completed = false;
-				this._progress = progress;
-				_statuscode = 2;
-
-				if(text != null)
-					result = text;
 			}
 		}
 
 		public override string ToString()
 		{
+			//Stringbuilders because why not
 			StringBuilder result = new StringBuilder();
-			
-			if (completed)
+
+			if (_completed)
 			{
+				//Statuscode > 0 indicates that the decryption is done, <= 0 indicates an error.
 				if (_statuscode > 0)
-				{
-					//For some reason String.Format makes it so that you need to use \r\n instead of just \n. Kinda annoying but whatever.
-					result.AppendLine(String.Format("Decryption Finished!\r\n\r\nTime Taken: {0:0.00} Seconds\r\n", getTimerSeconds()));
-				}
+					result.AppendLine("Decryption Finished!\r\n");
 				else
 					result.AppendLine("Decryption Error: Code " + (-statuscode) + "\r\n\r\nError Reason:");
 			}
+			//Statuscode 1 indicates decryption is in progress.
+			else if (_statuscode == 1)
+				result.AppendLine("Decrypting...\r\n");
 			else
-				result.AppendLine(String.Format("Decrypting...\r\n\r\nProgress: {0:0.000}%\r\n", progress * 100));
+				result.AppendLine("Decryption not started. Still seeing this message after a few seconds? Try restarting the program or contact Ipquarx@Gmail.com about the issue.");
 
 			result.Append(String.Join("\r\n", this.result));
 			return result.ToString();
@@ -137,20 +105,26 @@ namespace KeyUtils
 
 	class DecryptionParameters
 	{
+		//Fairly self-explanitory
 		public string[] keyDatPaths;
 		public string[] otherInfo;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DecryptionParameters"/> class.
+		/// </summary>
+		/// <param name="keydats">An array of paths to key.dat files.</param>
+		/// <param name="other">Other information.</param>
 		public DecryptionParameters(string[] keydats, params string[] other)
 		{
 			keyDatPaths = keydats;
 			otherInfo = other;
 		}
 
-		public DecryptionParameters()
-		{
-			keyDatPaths = new string[0];
-			otherInfo = new string[0];
-		}
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DecryptionParameters"/> class with blank fields
+		/// </summary>
+		public DecryptionParameters() : this(new string[0], new string[0])
+		{ }
 	}
 
 	#endregion Helper Classes
@@ -176,6 +150,13 @@ namespace KeyUtils
 			"Unknown x86 Compatible"
 		};
 
+		//The 4 most common processor names, collected from lots and lots and lots of console logs posted on BLF.
+		//Your processor name is probably in this list.
+		static string[] commonProcessors = 
+		{
+			"Intel (unknown, Pentium Pro/II/III family)", "Intel Pentium III/II", "Intel Pentium M", "AMD (unknown)"
+		};
+
 		//Quick lookup tables for optimized performance
 		static byte[] validCharTable =
 		{
@@ -191,10 +172,16 @@ namespace KeyUtils
 
 		#region Key-related Methods
 
+
+		/// <summary>
+		/// Generates a FAKE key from an inputted BLID.
+		/// </summary>
+		/// <param name="blid">The BLID to use.</param>
+		/// <returns>A completely fake, randomly generated "key."</returns>
 		public static string generateKeyfromBLID(int blid)
 		{
 			if(blid > 33554431)
-				return "BLID must be less than 33554432";
+				return "BLID must be less than 33,554,432";
 
 			if (blid < 0)
 				return "BLID must be positive or 0";
@@ -203,12 +190,14 @@ namespace KeyUtils
 			byte[] key = new byte[17];
 			int a = 0;
 
+			//Convert from base 2 to base 32
 			for (; a < 5; a++ )
 			{
 				key[4 - a] = (byte)(blid & 0x1f);
 				blid >>= 5;
 			}
 
+			//Generate random numbers
 			byte[] randoms = new byte[11];
 			RandomNumberGenerator rng = new RNGCryptoServiceProvider();
 			Random rng2 = new Random();
@@ -216,17 +205,25 @@ namespace KeyUtils
 
 			key[5] = (byte)rng2.Next(1, 31);
 
+			//Fill the key byte array
 			for (a = 0; a < 11; a++ )
 				key[a + 6] = (byte)(randoms[a] & 0x1f);
 
 			StringBuilder x = new StringBuilder();
 
+			//Convert the bytes to a full key
 			for (a = 0; a < 17; a++)
 				x.Append(keyChars[key[a]]);
 
 			return formatKey(x.ToString());
 		}
 
+		/// <summary>
+		/// Formats an inputted raw key.
+		/// </summary>
+		/// <param name="key">The key to format.</param>
+		/// <returns>A key with dashes added in, matching the key field boxes that Blockland uses.</returns>
+		/// <exception cref="System.ArgumentException">Param must be exactly 17 characters long.</exception>
 		public static string formatKey(string key)
 		{
 			if (key.Length != 17)
@@ -235,12 +232,15 @@ namespace KeyUtils
 			return key.Substring(0, 5) + "-" + key.Substring(5, 4) + "-" + key.Substring(9, 4) + "-" + key.Substring(13);
 		}
 
+		/// <summary>
+		/// Decrypt keydats from param with a given console log and an auto-detected MAC address.
+		/// </summary>
+		/// <param name="param">The decryption parameters (Keydats, options) to use. Method takes 1 option: A path to a console.log or launcher.log file.</param>
+		/// <param name="result">Result object to handle messages to the user.</param>
 		public static void decryptMode0(DecryptionParameters param, DecryptionResult result)
 		{
-			result.startTimer();
-
 			//Read keydats
-			List<byte[]> keydats = readKeyDats(param, result);
+			List<byte[]> keydats = IO.readKeyDats(param, result);
 
 			if(result.completed)
 				return;
@@ -269,6 +269,7 @@ namespace KeyUtils
 				return;
 			}
 
+			//Try to find a processor name in it (Should happen in the first few lines)
 			string foundProcessor = null;
 			while(!stream.EndOfStream)
 			{
@@ -287,42 +288,51 @@ namespace KeyUtils
 					break;
 			}
 
+			//Give an error message if we couldn't find the processor name (Probably wasn't a valid log file)
 			if (String.IsNullOrEmpty(foundProcessor))
 			{
 				result.finishedWithError(1, "Failed to read log file " + param.otherInfo[0] + "\n\nReason: Could not find Processor Name in File");
 				return;
 			}
 
+			//Start to prepare the result message
 			string resultmessage = "Detected MAC: " + GetMacAddress() + "\nDetected Processor Name: " + foundProcessor;
 
+			//Repeat the processor name a few times and then trim it to 17 characters
 			while (foundProcessor.Length < 17)
 				foundProcessor += foundProcessor;
 			foundProcessor = foundProcessor.Substring(0, 17);
 
-			//prepare xor
+			//Prepare byte arrays
 			byte[] mac = Encoding.ASCII.GetBytes("XXXXX" + GetMacAddress()),
 				processor = Encoding.ASCII.GetBytes(foundProcessor),
 				xor = new byte[17];
 
+			//Create XOR value
 			int a = 0, b = 0;
 			for (; a < 17; a++)
 				xor[a] = (byte)(mac[a] + processor[a]);
 
-			//xor it with all the different keydats
+			//XOR it with all the different keydats
 			for(a = 0; a < param.keyDatPaths.Length; a++)
 			{
+				//Prepare a byte array to store the result in
 				byte[] xored = new byte[17];
 
-				resultmessage += "\n\nKeydat file #" + (a + 1) + ": " + Path.GetFileName(param.keyDatPaths[a]) + "\n";
+				//Add to the result message
+				resultmessage += "\n\nKeydat file #" + (a + 1) + " (" + Path.GetFileName(param.keyDatPaths[a]) + "):\n";
 
+				//Do the XORing
 				for (b = 0; b < 17; b++)
 				{
 					xored[b] = (byte)(keydats[a][b] ^ xor[b]);
 
+					//If it isn't a vaild character then break out of the loop
 					if(validCharTable[xored[b]] == 0)
 						break;
 				}
 				
+				//If the decryption failed that means the MAC/Processor combo does not match up with the keydat, so give an error message and keep going
 				if(b != 17)
 				{
 					resultmessage += "Failed to decrypt: Keydat does not match up with MAC/Processor Name\nPartial Key: " + Encoding.Default.GetString(xored).Substring(0, b);
@@ -332,20 +342,28 @@ namespace KeyUtils
 				resultmessage += "Recovered Key: " + formatKey(Encoding.UTF8.GetString(xored));
 			}
 
+			//Finally send the finished result message
 			result.finishedWithSuccess(resultmessage.Split('\n'));
 		}
 
+		/// <summary>
+		/// Perform a "Known Key Decryption" where one key is used to find all the others inputted.
+		/// </summary>
+		/// <param name="param">The decryption parameters (Keydats, options) to use. Method takes 2 options: A path to a key.dat file and a plaintext unformatted 17-character key.</param>
+		/// <param name="result">Result object to handle messages to the user.</param>
 		public static void decryptMode1(DecryptionParameters param, DecryptionResult result)
 		{
 			//Read in the unknown keydats
-			List<byte[]> UnknownKeydats = readKeyDats(param, result);
+			List<byte[]> UnknownKeydats = IO.readKeyDats(param, result);
 
 			if (result.completed)
 				return;
 
+			//Read in the known keydat
 			param.keyDatPaths = new string[] { param.otherInfo[0] };
-			byte[] knownKeydat = readKeyDats(param, result)[0];
+			byte[] knownKeydat = IO.readKeyDats(param, result)[0];
 
+			//This will catch any errors thrown by IO.readKeyDats
 			if (result.completed)
 				return;
 
@@ -356,26 +374,26 @@ namespace KeyUtils
 			for (int a = 0; a < 17; a++)
 				xor[a] = (byte)(knownKeydat[a] ^ param.otherInfo[1][a]);
 
-			int upToIndex = 16;
+			//Define variables for use later
 			string message = String.Empty;
 			bool hasFailed = false;
 
+			//Loop through all the unknown keydats and try to decrypt them
 			for (int a = 0; a < UnknownKeydats.Count; a++)
 			{
-				message += "Keydat #" + (a + 1) + ":\n";
+				message += "Keydat file #" + (a + 1) + " (" + Path.GetFileName(param.keyDatPaths[a]) + "):\n";
 				string key = String.Empty;
 
-				for (int b = 0; b <= upToIndex; b++)
+				for (int b = 0; b < 17; b++)
 				{
+					//Key1[i] ^ KeyDat1[i] ^ KeyDat2[i] = Key2[i]
 					key += (char)(UnknownKeydats[a][b] ^ xor[b]);
 
+					//Let the user know if the results probably aren't correct
 					if (!hasFailed && validCharTable[key[b]] == 0)
 					{
 						hasFailed = true;
-						upToIndex = b;
 						message = "Keydat decryption failed: Known key did not match up with other keydats. Results probably aren't correct.\n\n" + message;
-
-						break;
 					}
 				}
 
@@ -391,117 +409,60 @@ namespace KeyUtils
 				result.finishedWithSuccess(message.Split('\n'));
 		}
 
+		/// <summary>
+		/// Performs a decryption on the given key.dats with a given MAC and Processor Name
+		/// </summary>
+		/// <param name="param">The decryption parameters (Keydats, options) to use.
+		/// Method takes 2 options: A plaintext MAC address and a processor name, which is case sensitive.</param>
+		/// <param name="result">The result.</param>
 		public static void decryptMode2(DecryptionParameters param, DecryptionResult result)
 		{
-			result.finishedWithError(10, "Decryption mode not yet implemented.");
-		}
+			//Read in the keydats
+			List<byte[]> Keydats = IO.readKeyDats(param, result);
 
-		private static List<byte[]> readKeyDats(DecryptionParameters param, DecryptionResult result)
-		{
-			List<byte[]> keydats = new List<byte[]>();
-			string failmessage = String.Empty;
-			bool didfail = false;
+			//Catch any error thrown by readKeyDats
+			if (result.completed)
+				return;
 
-			result.startTimer();
+			//Prepare the extra info
+			param.otherInfo[0] = "XXXXX" + param.otherInfo[0].Replace(":", "").Replace(" ", "").ToLower();
 
-			int x = 0;
-			for (; x < param.keyDatPaths.Length; x++)
+			while (param.otherInfo[1].Length < 17)
+				param.otherInfo[1] += param.otherInfo[1];
+			param.otherInfo[1] = param.otherInfo[1].Substring(0, 17);
+
+			//Construct the xor value
+			byte[] xor = new byte[17];
+
+			for (int a = 0; a < 17; a++)
+				xor[a] = (byte)(0 + param.otherInfo[0][a] + param.otherInfo[1][a]);
+
+			//Prepare variables
+			bool hasFailed = false;
+			string message = "Results are in hexadecimal.";
+			byte[] key = null;
+
+			//Try to decrypt all the keydats
+			for (int a = 0; a < Keydats.Count; a++)
 			{
-				string path = param.keyDatPaths[x];
+				message += "\n\nKeydat file #" + (a + 1) + " (" + Path.GetFileName(param.keyDatPaths[a]) + "):\n";
+				key = new byte[17];
 
-				//read file
-				FileStream stream = null;
-
-				try
+				for (int b = 0; b < 17; b++)
 				{
-					stream = File.Open(path, FileMode.Open);
-				}
-				catch(IOException ex)
-				{
-					failmessage += "Failed to read file " + path + "\n\nReason:\nError Code 1: IO Failure\n" + ex.Message + "\n\n";
-					didfail = true;
-					continue;
-				}
-				catch(Exception ex)
-				{
-					failmessage += "Failed to read file " + path + "\n\nReason:\nError Code 404: Unknown Failure\n" + ex.Message + "\n\n";
-					didfail = true;
-					continue;
-				}
+					key[b] = (byte)(Keydats[a][b] ^ xor[b]);
 
-				if (stream.Length < 17 || stream.Length > 1000)
-				{
-					failmessage += "Failed to read file " + path + "\n\nReason:\nError Code 101: Not A Keydat File\n\n";
-					didfail = true;
-					continue;
-				}
-
-				byte[] arr = new byte[17];
-
-				//We assume that blockland will never make a keydat that doesn't have the key part as the last 17 bytes.
-				stream.Position = stream.Length - 17;
-				stream.Read(arr, 0, 17);
-
-				stream.Close();
-				stream.Dispose();
-
-				keydats.Add(arr);
-			}
-
-			if(didfail)
-				result.finishedWithError(1, failmessage.Substring(0, failmessage.Length - 2).Split('\n'));
-
-			return keydats;
-		}
-
-		private static char[][][] preparePossibleChars(int keydatcount)
-		{
-			char[][][] possibleChars = new char[keydatcount][][];
-
-			for (int a = 0; a < keydatcount; a++)
-			{
-				possibleChars[a] = new char[17][];
-				possibleChars[a][0] = new char[] { 'A' };
-				possibleChars[a][1] = new char[] { 'A', 'B', 'C', 'D', 'E', 'F' };
-
-				for (int b = 2; b < 17; b++)
-					possibleChars[a][b] = keyChars.ToCharArray();
-			}
-
-			return possibleChars;
-		}
-
-		//Debating whether or not to keep this.
-		private static char[][][] narrowPossibleChars(char[][][] possibleChars, List<byte[]> keyDats, int keydatCount)
-		{
-			int a = 0, b = 0, c = 0, d = 0;
-
-			//4 nested for loops?! Blasphemy!
-			for (a = 0;     a < keydatCount - 1; a++)
-			for (b = a + 1; b < keydatCount;     b++)
-			for (c = 1; c < 17; c++)
-			{
-				List<char> pc1 = new List<char>(), pc2 = new List<char>();
-				byte xored = (byte)(keyDats[a][c] ^ keyDats[b][c]);
-
-				for (d = 0; d < possibleChars[a][c].Length; d++)
-				{
-					byte xored2 = (byte)(xored ^ possibleChars[a][c][d]);
-
-					//Somehow, these two are functionally equivalent even though in theory they shouldn't be.
-					//if(Array.IndexOf(possibleChars[b][c], (char)xored2) >= 0)
-					if (validCharTable[xored2] != 0)
+					if (!hasFailed && validCharTable[key[b]] == 0)
 					{
-						pc1.Add(possibleChars[a][c][d]);
-						pc2.Add((char)xored2);
+						message = "MAC/Processor combo does not match up with one or more keydats. Results probably aren't what you wanted.\n\n" + message;
+						hasFailed = true;
 					}
 				}
 
-				possibleChars[a][c] = pc1.ToArray();
-				possibleChars[b][c] = pc2.ToArray();
+				message += ByteArrayToString(key);
 			}
 
-			return possibleChars;
+			result.finishedWithSuccess(message.Split('\n'));
 		}
 
 		#endregion Key-related Methods
@@ -530,38 +491,21 @@ namespace KeyUtils
 			}
 		}
 
-		//Courtesy of http://stackoverflow.com/a/15784105/4059721 with minor edits
+		//Courtesy of http://stackoverflow.com/a/15784105/4059721 with edits
 		private static string GetMacAddress()
 		{
 			NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
-			String sMacAddress = string.Empty;
-			foreach (NetworkInterface adapter in nics)
-			{
-				if (sMacAddress == String.Empty)
-				{
-					sMacAddress = adapter.GetPhysicalAddress().ToString();
-					break;
-				}
-			}
 
-			return sMacAddress.ToLower();
+			return nics[0].GetPhysicalAddress().ToString().ToLower();
+		}
+
+		//Courtesy of http://stackoverflow.com/a/311179
+		private static string ByteArrayToString(byte[] ba)
+		{
+			string hex = BitConverter.ToString(ba);
+			return hex.Replace("-", "");
 		}
 
 		#endregion Other Methods
-	}
-
-	static class Extensions<T>
-	{
-		public static T[] mergeArrays(T[] array1, T[] array2)
-		{
-			List<T> newarray = new List<T>();
-			HashSet<T> h2 = new HashSet<T>(array2);
-
-			for(int a = 0; a < array2.Length; a++)
-				if (h2.Contains(array2[a]))
-					newarray.Add(array2[a]);
-
-			return newarray.ToArray();
-		}
 	}
 }

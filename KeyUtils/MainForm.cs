@@ -234,12 +234,11 @@ namespace KeyUtils
 					break;
 				
 				default:
-					MessageBox.Show("Something seriously screwed up. Thankfully this will probably never happen again. Restart the program.", "Oh noes!");
+					MessageBox.Show("Something seriously screwed up. Thankfully this will probably never happen again, so please restart the program.", "Oh noes!");
 					break;
 			}
 
 			ResultsForm FRM_Results = new ResultsForm(currentMode, par);
-
 			FRM_Results.ShowDialog();
 		}
 

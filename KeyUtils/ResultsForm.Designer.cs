@@ -63,6 +63,7 @@
 			// 
 			// TMR_ProgressPoll
 			// 
+			this.TMR_ProgressPoll.Interval = 200;
 			this.TMR_ProgressPoll.Tick += new System.EventHandler(this.TMR_ProgressPoll_Tick);
 			// 
 			// BTN_How
