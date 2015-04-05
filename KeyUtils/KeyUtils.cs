@@ -291,7 +291,7 @@ namespace KeyUtils
 			//Give an error message if we couldn't find the processor name (Probably wasn't a valid log file)
 			if (String.IsNullOrEmpty(foundProcessor))
 			{
-				result.finishedWithError(1, "Failed to read log file " + param.otherInfo[0] + "\n\nReason: Could not find Processor Name in File");
+				result.finishedWithError(1, "Failed to read log file " + param.otherInfo[0] + "\n\nReason: Could not find processor name in file");
 				return;
 			}
 

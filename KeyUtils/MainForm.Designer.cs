@@ -62,9 +62,6 @@
 			this.TXT_FK1 = new System.Windows.Forms.TextBox();
 			this.LBL_2 = new System.Windows.Forms.Label();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.button1 = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.BTN_Update3 = new System.Windows.Forms.Button();
 			this.BTN_Update1 = new System.Windows.Forms.Button();
 			this.TXT_BLLoc = new System.Windows.Forms.TextBox();
@@ -438,9 +435,6 @@
 			// 
 			// tabPage4
 			// 
-			this.tabPage4.Controls.Add(this.button1);
-			this.tabPage4.Controls.Add(this.textBox1);
-			this.tabPage4.Controls.Add(this.label2);
 			this.tabPage4.Controls.Add(this.BTN_Update3);
 			this.tabPage4.Controls.Add(this.BTN_Update1);
 			this.tabPage4.Controls.Add(this.TXT_BLLoc);
@@ -455,37 +449,9 @@
 			this.tabPage4.Text = "Options";
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(101, 169);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(66, 23);
-			this.button1.TabIndex = 8;
-			this.button1.Text = "Update";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(55, 143);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(159, 20);
-			this.textBox1.TabIndex = 7;
-			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(64, 120);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(141, 20);
-			this.label2.TabIndex = 6;
-			this.label2.Text = "Saved Mac Address:";
-			// 
 			// BTN_Update3
 			// 
-			this.BTN_Update3.Location = new System.Drawing.Point(101, 274);
+			this.BTN_Update3.Location = new System.Drawing.Point(101, 160);
 			this.BTN_Update3.Name = "BTN_Update3";
 			this.BTN_Update3.Size = new System.Drawing.Size(66, 23);
 			this.BTN_Update3.TabIndex = 5;
@@ -503,7 +469,7 @@
 			// 
 			// TXT_BLLoc
 			// 
-			this.TXT_BLLoc.Location = new System.Drawing.Point(55, 248);
+			this.TXT_BLLoc.Location = new System.Drawing.Point(55, 134);
 			this.TXT_BLLoc.Name = "TXT_BLLoc";
 			this.TXT_BLLoc.ReadOnly = true;
 			this.TXT_BLLoc.Size = new System.Drawing.Size(159, 20);
@@ -514,7 +480,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(43, 225);
+			this.label3.Location = new System.Drawing.Point(43, 111);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(182, 20);
 			this.label3.TabIndex = 2;
@@ -611,9 +577,6 @@
 		private System.Windows.Forms.Button BTN_ConvBack;
 		private System.Windows.Forms.Button BTN_Launch;
 		private System.Windows.Forms.Button BTN_ConvTo;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Label label2;
 
 	}
 }

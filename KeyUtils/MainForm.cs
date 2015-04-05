@@ -219,6 +219,7 @@ namespace KeyUtils
 		{
 			DecryptionParameters par = null;
 
+			//Set up decryption parameters in the specific way provided by the documentation
 			switch(currentMode)
 			{
 				case 0:
@@ -238,6 +239,7 @@ namespace KeyUtils
 					break;
 			}
 
+			//Show the results dialog
 			ResultsForm FRM_Results = new ResultsForm(currentMode, par);
 			FRM_Results.ShowDialog();
 		}
