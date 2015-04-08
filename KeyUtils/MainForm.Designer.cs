@@ -37,11 +37,6 @@
 			this.BTN_Select2 = new System.Windows.Forms.Button();
 			this.LBL_DYN = new System.Windows.Forms.Label();
 			this.BTN_What2 = new System.Windows.Forms.Button();
-			this.LBL_Bits = new System.Windows.Forms.Label();
-			this.BTN_What1 = new System.Windows.Forms.Button();
-			this.LBL_1 = new System.Windows.Forms.Label();
-			this.LBL_Num = new System.Windows.Forms.Label();
-			this.LBL_0 = new System.Windows.Forms.Label();
 			this.BTN_Select1 = new System.Windows.Forms.Button();
 			this.LBL_Mode = new System.Windows.Forms.Label();
 			this.BTN_Mode = new System.Windows.Forms.Button();
@@ -69,6 +64,8 @@
 			this.TXT_ProcessorSaved = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.DLG_Open = new System.Windows.Forms.OpenFileDialog();
+			this.LBL_0 = new System.Windows.Forms.Label();
+			this.LBL_Num = new System.Windows.Forms.Label();
 			this.TAB_0.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
@@ -88,7 +85,7 @@
 			this.TAB_0.Multiline = true;
 			this.TAB_0.Name = "TAB_0";
 			this.TAB_0.SelectedIndex = 0;
-			this.TAB_0.Size = new System.Drawing.Size(277, 357);
+			this.TAB_0.Size = new System.Drawing.Size(277, 322);
 			this.TAB_0.TabIndex = 0;
 			// 
 			// tabPage1
@@ -99,9 +96,6 @@
 			this.tabPage1.Controls.Add(this.BTN_Select2);
 			this.tabPage1.Controls.Add(this.LBL_DYN);
 			this.tabPage1.Controls.Add(this.BTN_What2);
-			this.tabPage1.Controls.Add(this.LBL_Bits);
-			this.tabPage1.Controls.Add(this.BTN_What1);
-			this.tabPage1.Controls.Add(this.LBL_1);
 			this.tabPage1.Controls.Add(this.LBL_Num);
 			this.tabPage1.Controls.Add(this.LBL_0);
 			this.tabPage1.Controls.Add(this.BTN_Select1);
@@ -110,14 +104,14 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(269, 331);
+			this.tabPage1.Size = new System.Drawing.Size(269, 296);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Decrypt";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// BTN_Decrypt
 			// 
-			this.BTN_Decrypt.Location = new System.Drawing.Point(96, 302);
+			this.BTN_Decrypt.Location = new System.Drawing.Point(96, 261);
 			this.BTN_Decrypt.Name = "BTN_Decrypt";
 			this.BTN_Decrypt.Size = new System.Drawing.Size(75, 23);
 			this.BTN_Decrypt.TabIndex = 13;
@@ -127,7 +121,7 @@
 			// 
 			// TXT_Extra2
 			// 
-			this.TXT_Extra2.Location = new System.Drawing.Point(57, 275);
+			this.TXT_Extra2.Location = new System.Drawing.Point(57, 234);
 			this.TXT_Extra2.Name = "TXT_Extra2";
 			this.TXT_Extra2.Size = new System.Drawing.Size(152, 20);
 			this.TXT_Extra2.TabIndex = 12;
@@ -135,7 +129,7 @@
 			// 
 			// TXT_Extra1
 			// 
-			this.TXT_Extra1.Location = new System.Drawing.Point(57, 250);
+			this.TXT_Extra1.Location = new System.Drawing.Point(57, 209);
 			this.TXT_Extra1.Name = "TXT_Extra1";
 			this.TXT_Extra1.ReadOnly = true;
 			this.TXT_Extra1.Size = new System.Drawing.Size(99, 20);
@@ -143,7 +137,7 @@
 			// 
 			// BTN_Select2
 			// 
-			this.BTN_Select2.Location = new System.Drawing.Point(162, 248);
+			this.BTN_Select2.Location = new System.Drawing.Point(162, 207);
 			this.BTN_Select2.Name = "BTN_Select2";
 			this.BTN_Select2.Size = new System.Drawing.Size(47, 23);
 			this.BTN_Select2.TabIndex = 10;
@@ -154,7 +148,7 @@
 			// LBL_DYN
 			// 
 			this.LBL_DYN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.LBL_DYN.Location = new System.Drawing.Point(0, 219);
+			this.LBL_DYN.Location = new System.Drawing.Point(0, 178);
 			this.LBL_DYN.Name = "LBL_DYN";
 			this.LBL_DYN.Size = new System.Drawing.Size(188, 21);
 			this.LBL_DYN.TabIndex = 9;
@@ -164,64 +158,13 @@
 			// BTN_What2
 			// 
 			this.BTN_What2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.BTN_What2.Location = new System.Drawing.Point(187, 219);
+			this.BTN_What2.Location = new System.Drawing.Point(187, 178);
 			this.BTN_What2.Name = "BTN_What2";
 			this.BTN_What2.Size = new System.Drawing.Size(75, 23);
 			this.BTN_What2.TabIndex = 8;
 			this.BTN_What2.Text = "What\'s this?";
 			this.BTN_What2.UseVisualStyleBackColor = true;
 			this.BTN_What2.Click += new System.EventHandler(this.BTN_What2_Click);
-			// 
-			// LBL_Bits
-			// 
-			this.LBL_Bits.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-			this.LBL_Bits.Location = new System.Drawing.Point(103, 194);
-			this.LBL_Bits.Name = "LBL_Bits";
-			this.LBL_Bits.Size = new System.Drawing.Size(60, 16);
-			this.LBL_Bits.TabIndex = 7;
-			this.LBL_Bits.Text = "N/A";
-			this.LBL_Bits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// BTN_What1
-			// 
-			this.BTN_What1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.BTN_What1.Location = new System.Drawing.Point(187, 174);
-			this.BTN_What1.Name = "BTN_What1";
-			this.BTN_What1.Size = new System.Drawing.Size(75, 23);
-			this.BTN_What1.TabIndex = 6;
-			this.BTN_What1.Text = "What\'s this?";
-			this.BTN_What1.UseVisualStyleBackColor = true;
-			this.BTN_What1.Click += new System.EventHandler(this.BTN_What1_Click);
-			// 
-			// LBL_1
-			// 
-			this.LBL_1.AutoSize = true;
-			this.LBL_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.LBL_1.Location = new System.Drawing.Point(11, 179);
-			this.LBL_1.Name = "LBL_1";
-			this.LBL_1.Size = new System.Drawing.Size(164, 13);
-			this.LBL_1.TabIndex = 5;
-			this.LBL_1.Text = "Estimated # of bits of uncertainty:";
-			// 
-			// LBL_Num
-			// 
-			this.LBL_Num.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-			this.LBL_Num.Location = new System.Drawing.Point(0, 154);
-			this.LBL_Num.Name = "LBL_Num";
-			this.LBL_Num.Size = new System.Drawing.Size(266, 19);
-			this.LBL_Num.TabIndex = 4;
-			this.LBL_Num.Text = "0";
-			this.LBL_Num.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// LBL_0
-			// 
-			this.LBL_0.AutoSize = true;
-			this.LBL_0.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-			this.LBL_0.Location = new System.Drawing.Point(73, 141);
-			this.LBL_0.Name = "LBL_0";
-			this.LBL_0.Size = new System.Drawing.Size(120, 13);
-			this.LBL_0.TabIndex = 3;
-			this.LBL_0.Text = "# Of Keydats selected:";
 			// 
 			// BTN_Select1
 			// 
@@ -268,7 +211,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(269, 331);
+			this.tabPage2.Size = new System.Drawing.Size(269, 296);
 			this.tabPage2.TabIndex = 2;
 			this.tabPage2.Text = "v2 Keydat";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -276,7 +219,7 @@
 			// BTN_ConvBack
 			// 
 			this.BTN_ConvBack.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BTN_ConvBack.Location = new System.Drawing.Point(75, 231);
+			this.BTN_ConvBack.Location = new System.Drawing.Point(75, 198);
 			this.BTN_ConvBack.Name = "BTN_ConvBack";
 			this.BTN_ConvBack.Size = new System.Drawing.Size(118, 78);
 			this.BTN_ConvBack.TabIndex = 4;
@@ -286,7 +229,7 @@
 			// BTN_Launch
 			// 
 			this.BTN_Launch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BTN_Launch.Location = new System.Drawing.Point(75, 126);
+			this.BTN_Launch.Location = new System.Drawing.Point(75, 109);
 			this.BTN_Launch.Name = "BTN_Launch";
 			this.BTN_Launch.Size = new System.Drawing.Size(118, 78);
 			this.BTN_Launch.TabIndex = 3;
@@ -296,7 +239,7 @@
 			// BTN_ConvTo
 			// 
 			this.BTN_ConvTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.BTN_ConvTo.Location = new System.Drawing.Point(75, 21);
+			this.BTN_ConvTo.Location = new System.Drawing.Point(75, 20);
 			this.BTN_ConvTo.Name = "BTN_ConvTo";
 			this.BTN_ConvTo.Size = new System.Drawing.Size(118, 78);
 			this.BTN_ConvTo.TabIndex = 2;
@@ -334,7 +277,7 @@
 			this.tabPage3.Location = new System.Drawing.Point(4, 22);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(269, 331);
+			this.tabPage3.Size = new System.Drawing.Size(269, 296);
 			this.tabPage3.TabIndex = 3;
 			this.tabPage3.Text = "Other Tools";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -352,7 +295,7 @@
 			// TXT_BLID2
 			// 
 			this.TXT_BLID2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.TXT_BLID2.Location = new System.Drawing.Point(72, 266);
+			this.TXT_BLID2.Location = new System.Drawing.Point(72, 240);
 			this.TXT_BLID2.Name = "TXT_BLID2";
 			this.TXT_BLID2.ReadOnly = true;
 			this.TXT_BLID2.Size = new System.Drawing.Size(122, 20);
@@ -375,7 +318,7 @@
 			// LBL_5
 			// 
 			this.LBL_5.Font = new System.Drawing.Font("Segoe UI", 8F);
-			this.LBL_5.Location = new System.Drawing.Point(9, 248);
+			this.LBL_5.Location = new System.Drawing.Point(9, 222);
 			this.LBL_5.Name = "LBL_5";
 			this.LBL_5.Size = new System.Drawing.Size(249, 14);
 			this.LBL_5.TabIndex = 6;
@@ -386,7 +329,7 @@
 			// 
 			this.TXT_BLID1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.TXT_BLID1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.TXT_BLID1.Location = new System.Drawing.Point(72, 225);
+			this.TXT_BLID1.Location = new System.Drawing.Point(72, 199);
 			this.TXT_BLID1.MaxLength = 5;
 			this.TXT_BLID1.Name = "TXT_BLID1";
 			this.TXT_BLID1.Size = new System.Drawing.Size(122, 20);
@@ -397,7 +340,7 @@
 			// LBL_4
 			// 
 			this.LBL_4.Font = new System.Drawing.Font("Segoe UI", 10F);
-			this.LBL_4.Location = new System.Drawing.Point(9, 179);
+			this.LBL_4.Location = new System.Drawing.Point(9, 153);
 			this.LBL_4.Name = "LBL_4";
 			this.LBL_4.Size = new System.Drawing.Size(249, 42);
 			this.LBL_4.TabIndex = 4;
@@ -444,7 +387,7 @@
 			this.tabPage4.Location = new System.Drawing.Point(4, 22);
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(269, 331);
+			this.tabPage4.Size = new System.Drawing.Size(269, 296);
 			this.tabPage4.TabIndex = 4;
 			this.tabPage4.Text = "Options";
 			this.tabPage4.UseVisualStyleBackColor = true;
@@ -511,11 +454,31 @@
 			this.DLG_Open.Filter = ".Dat file|*.dat|All files|*.*";
 			this.DLG_Open.Multiselect = true;
 			// 
+			// LBL_0
+			// 
+			this.LBL_0.AutoSize = true;
+			this.LBL_0.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+			this.LBL_0.Location = new System.Drawing.Point(73, 141);
+			this.LBL_0.Name = "LBL_0";
+			this.LBL_0.Size = new System.Drawing.Size(120, 13);
+			this.LBL_0.TabIndex = 3;
+			this.LBL_0.Text = "# Of Keydats selected:";
+			// 
+			// LBL_Num
+			// 
+			this.LBL_Num.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.LBL_Num.Location = new System.Drawing.Point(0, 154);
+			this.LBL_Num.Name = "LBL_Num";
+			this.LBL_Num.Size = new System.Drawing.Size(266, 19);
+			this.LBL_Num.TabIndex = 4;
+			this.LBL_Num.Text = "0";
+			this.LBL_Num.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(277, 357);
+			this.ClientSize = new System.Drawing.Size(277, 322);
 			this.Controls.Add(this.TAB_0);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -544,11 +507,7 @@
 		private System.Windows.Forms.Button BTN_Mode;
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.Button BTN_Select1;
-		private System.Windows.Forms.Label LBL_1;
-		private System.Windows.Forms.Label LBL_Num;
-		private System.Windows.Forms.Label LBL_0;
 		private System.Windows.Forms.OpenFileDialog DLG_Open;
-		private System.Windows.Forms.Button BTN_What1;
 		private System.Windows.Forms.Label LBL_3;
 		private System.Windows.Forms.TextBox TXT_FK1;
 		private System.Windows.Forms.Label LBL_2;
@@ -558,7 +517,6 @@
 		private System.Windows.Forms.Label LBL_4;
 		private System.Windows.Forms.TextBox TXT_BLID2;
 		private System.Windows.Forms.Button BTN_Gen;
-		private System.Windows.Forms.Label LBL_Bits;
 		private System.Windows.Forms.Label LBL_DYN;
 		private System.Windows.Forms.Button BTN_What2;
 		private System.Windows.Forms.TextBox TXT_Extra1;
@@ -577,6 +535,8 @@
 		private System.Windows.Forms.Button BTN_ConvBack;
 		private System.Windows.Forms.Button BTN_Launch;
 		private System.Windows.Forms.Button BTN_ConvTo;
+		private System.Windows.Forms.Label LBL_Num;
+		private System.Windows.Forms.Label LBL_0;
 
 	}
 }

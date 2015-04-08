@@ -66,11 +66,20 @@ namespace KeyUtils
 			{
 				file = File.CreateText(DLG_Save.FileName);
 			}
-			catch(IOException ex)
+			catch (UnauthorizedAccessException)
 			{
-				MessageBox.Show("Please sent this message to Ipquarx.\n\n" + ex.Message, "File Error!");
+				MessageBox.Show("You don't have permissions to save there! Try running the program with admin priviledges or saving in a different location.", "File Error!");
+			}
+			catch (PathTooLongException)
+			{
+				MessageBox.Show("The path to save the file at was too long! Try going up a few (Or dozens. I have no idea why you're this far nested in) folder levels.", "File Error!");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Please send a screencap of this to Ipquarx@Gmail.com:\n\n" + ex.Message, "File error!");
 			}
 
+			//Will be triggered if an exception was thrown
 			if (file == null)
 				return;
 

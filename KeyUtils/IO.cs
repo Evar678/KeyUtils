@@ -7,6 +7,18 @@ namespace KeyUtils
 {
 	static class IO
 	{
+		public static string savedProcessor, savedBlocklandLoc;
+
+		public static void writeConfigFile()
+		{
+			//TBD
+		}
+
+		public static void readConfigFile()
+		{
+			//TBD
+		}
+
 		/// <summary>
 		/// Reads a list of keydats into byte arrays.
 		/// </summary>
