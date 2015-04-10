@@ -9,11 +9,24 @@ namespace KeyUtils
 	{
 		public static string savedProcessor, savedBlocklandLoc;
 
+		private static readonly string configFileLoc = "./config.ini";
+
+		/// <summary>
+		/// Writes the saved processor name and blockland folder location to a config file
+		/// </summary>
 		public static void writeConfigFile()
 		{
-			//TBD
+			if(File.Exists(configFileLoc))
+				File.Delete(configFileLoc);
+
+			StreamWriter configFile = File.CreateText(configFileLoc);
+
+			configFile.WriteLine(savedProcessor);
 		}
 
+		/// <summary>
+		/// Reads the saved config file and puts the results in their respective variables
+		/// </summary>
 		public static void readConfigFile()
 		{
 			//TBD
