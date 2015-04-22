@@ -19,9 +19,11 @@ namespace KeyUtils
 			if(File.Exists(configFileLoc))
 				File.Delete(configFileLoc);
 
-			StreamWriter configFile = File.CreateText(configFileLoc);
-
-			configFile.WriteLine(savedProcessor);
+			using (StreamWriter configFile = File.CreateText(configFileLoc))
+			{
+				configFile.WriteLine(savedProcessor);
+				configFile.WriteLine(savedBlocklandLoc);
+			}
 		}
 
 		/// <summary>
@@ -29,7 +31,19 @@ namespace KeyUtils
 		/// </summary>
 		public static void readConfigFile()
 		{
-			//TBD
+			if (!File.Exists(configFileLoc))
+			{
+				savedProcessor = savedBlocklandLoc = "";
+				writeConfigFile();
+
+				return;
+			}
+
+			using (StreamReader configFile = File.OpenText(configFileLoc))
+			{
+				savedProcessor = configFile.ReadLine();
+				savedBlocklandLoc = configFile.ReadLine();
+			}
 		}
 
 		/// <summary>

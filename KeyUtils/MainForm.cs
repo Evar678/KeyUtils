@@ -21,7 +21,7 @@ namespace KeyUtils
 
 		//Strings of text for the 2nd "What's this?" button in the Decrypt tab
 		string[] modetext2 = 
-		{ "In order to properly decode your key.dat file, we need to know what blockland thinks your processor name is. To do this, we could either use a c++ dll file (which would be a bit shady) or we can get the processor name from a console.log file that blockland creates.\n\nPlease press the \"Select\" button and select a console.log file created by this computer.\n\nThis is only known to work if the log file was created on a Microsoft operating system like Windows.",
+		{ "In order to properly decode your key.dat file, we need to know what blockland detects your processor name as. To do this, we need a console.log or launcher.log file that blockland has created.\n\nPlease press the \"Select\" button and select a console.log file created on this computer.\n\nThis is also only known to work on Windows OSes. More research is needed for OSX.",
 		  "In order to properly decode your key.dat files in this mode, we need a full key associated with one of the keydats.\n\nPlease press the Select button and select the keydat whose key is fully known, then put the known key in the bottom textbox.",
 		  "Enter in a MAC address in the top textbox and a processor name in the bottom and the program will output the decryption result.",
 		};
@@ -132,7 +132,7 @@ namespace KeyUtils
 					break;
 
 				case 2:
-					BTN_What2.Visible = true;
+					BTN_What1.Visible = true;
 					BTN_Select2.Visible = false;
 
 					LBL_DYN.Visible = true;
@@ -204,14 +204,6 @@ namespace KeyUtils
 
 		private void BTN_What1_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("A bit can be either a 1 or a 0, which is 2 values.\n\n" +
-					"If there's one bit of uncertainty, then that means you need to manually check 2 different combinations to see if they're valid.\n\n" +
-					"If there's two bits of uncertainty, that number doubles to 4 combinations. With 3 bits, that doubles again to 8. With 4 bits it doubles again to 16, and so on.\n\n" +
-					"0 bits = 1\n5 bits = 32\n10 bits = 1,024\n20 bits = ~1,050,000\n30 bits = ~1,070,000,000", "What's this?");
-		}
-
-		private void BTN_What2_Click(object sender, EventArgs e)
-		{
 			MessageBox.Show(modetext2[currentMode], "What's this?");
 		}
 
@@ -270,6 +262,7 @@ namespace KeyUtils
 
 		#endregion Other Methods
 
+		//This was a just a test of zxcvbn
 		private void TXT_1_TextChanged(object sender, EventArgs e)
 		{
 			var result = strengthEstimator.EvaluatePassword(TXT_1.Text);

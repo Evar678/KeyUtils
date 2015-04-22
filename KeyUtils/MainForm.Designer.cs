@@ -36,7 +36,9 @@
 			this.TXT_Extra1 = new System.Windows.Forms.TextBox();
 			this.BTN_Select2 = new System.Windows.Forms.Button();
 			this.LBL_DYN = new System.Windows.Forms.Label();
-			this.BTN_What2 = new System.Windows.Forms.Button();
+			this.BTN_What1 = new System.Windows.Forms.Button();
+			this.LBL_Num = new System.Windows.Forms.Label();
+			this.LBL_0 = new System.Windows.Forms.Label();
 			this.BTN_Select1 = new System.Windows.Forms.Button();
 			this.LBL_Mode = new System.Windows.Forms.Label();
 			this.BTN_Mode = new System.Windows.Forms.Button();
@@ -63,14 +65,18 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.TXT_ProcessorSaved = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.LBL_About3 = new System.Windows.Forms.Label();
+			this.LBL_About2 = new System.Windows.Forms.Label();
+			this.LBL_About1 = new System.Windows.Forms.Label();
 			this.DLG_Open = new System.Windows.Forms.OpenFileDialog();
-			this.LBL_0 = new System.Windows.Forms.Label();
-			this.LBL_Num = new System.Windows.Forms.Label();
 			this.TAB_0.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			this.tabPage3.SuspendLayout();
 			this.tabPage4.SuspendLayout();
+			this.tabPage5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// TAB_0
@@ -79,6 +85,7 @@
 			this.TAB_0.Controls.Add(this.tabPage2);
 			this.TAB_0.Controls.Add(this.tabPage3);
 			this.TAB_0.Controls.Add(this.tabPage4);
+			this.TAB_0.Controls.Add(this.tabPage5);
 			this.TAB_0.Cursor = System.Windows.Forms.Cursors.Default;
 			this.TAB_0.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TAB_0.Location = new System.Drawing.Point(0, 0);
@@ -95,7 +102,7 @@
 			this.tabPage1.Controls.Add(this.TXT_Extra1);
 			this.tabPage1.Controls.Add(this.BTN_Select2);
 			this.tabPage1.Controls.Add(this.LBL_DYN);
-			this.tabPage1.Controls.Add(this.BTN_What2);
+			this.tabPage1.Controls.Add(this.BTN_What1);
 			this.tabPage1.Controls.Add(this.LBL_Num);
 			this.tabPage1.Controls.Add(this.LBL_0);
 			this.tabPage1.Controls.Add(this.BTN_Select1);
@@ -155,16 +162,36 @@
 			this.LBL_DYN.Text = "Please upload a console.log";
 			this.LBL_DYN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// BTN_What2
+			// BTN_What1
 			// 
-			this.BTN_What2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-			this.BTN_What2.Location = new System.Drawing.Point(187, 178);
-			this.BTN_What2.Name = "BTN_What2";
-			this.BTN_What2.Size = new System.Drawing.Size(75, 23);
-			this.BTN_What2.TabIndex = 8;
-			this.BTN_What2.Text = "What\'s this?";
-			this.BTN_What2.UseVisualStyleBackColor = true;
-			this.BTN_What2.Click += new System.EventHandler(this.BTN_What2_Click);
+			this.BTN_What1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.BTN_What1.Location = new System.Drawing.Point(187, 178);
+			this.BTN_What1.Name = "BTN_What1";
+			this.BTN_What1.Size = new System.Drawing.Size(75, 23);
+			this.BTN_What1.TabIndex = 8;
+			this.BTN_What1.Text = "What\'s this?";
+			this.BTN_What1.UseVisualStyleBackColor = true;
+			this.BTN_What1.Click += new System.EventHandler(this.BTN_What1_Click);
+			// 
+			// LBL_Num
+			// 
+			this.LBL_Num.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.LBL_Num.Location = new System.Drawing.Point(0, 152);
+			this.LBL_Num.Name = "LBL_Num";
+			this.LBL_Num.Size = new System.Drawing.Size(266, 19);
+			this.LBL_Num.TabIndex = 4;
+			this.LBL_Num.Text = "0";
+			this.LBL_Num.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// LBL_0
+			// 
+			this.LBL_0.AutoSize = true;
+			this.LBL_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.LBL_0.Location = new System.Drawing.Point(71, 137);
+			this.LBL_0.Name = "LBL_0";
+			this.LBL_0.Size = new System.Drawing.Size(127, 15);
+			this.LBL_0.TabIndex = 3;
+			this.LBL_0.Text = "# Of Keydats selected:";
 			// 
 			// BTN_Select1
 			// 
@@ -181,7 +208,7 @@
 			// 
 			this.LBL_Mode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.LBL_Mode.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.LBL_Mode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.LBL_Mode.Location = new System.Drawing.Point(4, 8);
 			this.LBL_Mode.Name = "LBL_Mode";
 			this.LBL_Mode.Size = new System.Drawing.Size(262, 60);
@@ -218,6 +245,7 @@
 			// 
 			// BTN_ConvBack
 			// 
+			this.BTN_ConvBack.Enabled = false;
 			this.BTN_ConvBack.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.BTN_ConvBack.Location = new System.Drawing.Point(75, 198);
 			this.BTN_ConvBack.Name = "BTN_ConvBack";
@@ -228,6 +256,7 @@
 			// 
 			// BTN_Launch
 			// 
+			this.BTN_Launch.Enabled = false;
 			this.BTN_Launch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.BTN_Launch.Location = new System.Drawing.Point(75, 109);
 			this.BTN_Launch.Name = "BTN_Launch";
@@ -238,6 +267,7 @@
 			// 
 			// BTN_ConvTo
 			// 
+			this.BTN_ConvTo.Enabled = false;
 			this.BTN_ConvTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.BTN_ConvTo.Location = new System.Drawing.Point(75, 20);
 			this.BTN_ConvTo.Name = "BTN_ConvTo";
@@ -254,6 +284,7 @@
 			this.LBL_Entropy.Size = new System.Drawing.Size(35, 13);
 			this.LBL_Entropy.TabIndex = 1;
 			this.LBL_Entropy.Text = "label1";
+			this.LBL_Entropy.Visible = false;
 			// 
 			// TXT_1
 			// 
@@ -261,6 +292,7 @@
 			this.TXT_1.Name = "TXT_1";
 			this.TXT_1.Size = new System.Drawing.Size(76, 20);
 			this.TXT_1.TabIndex = 0;
+			this.TXT_1.Visible = false;
 			this.TXT_1.TextChanged += new System.EventHandler(this.TXT_1_TextChanged);
 			// 
 			// tabPage3
@@ -339,7 +371,7 @@
 			// 
 			// LBL_4
 			// 
-			this.LBL_4.Font = new System.Drawing.Font("Segoe UI", 10F);
+			this.LBL_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.LBL_4.Location = new System.Drawing.Point(9, 153);
 			this.LBL_4.Name = "LBL_4";
 			this.LBL_4.Size = new System.Drawing.Size(249, 42);
@@ -368,7 +400,7 @@
 			// 
 			// LBL_2
 			// 
-			this.LBL_2.Font = new System.Drawing.Font("Segoe UI", 10F);
+			this.LBL_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.LBL_2.Location = new System.Drawing.Point(10, 27);
 			this.LBL_2.Name = "LBL_2";
 			this.LBL_2.Size = new System.Drawing.Size(246, 22);
@@ -448,31 +480,65 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Saved Processor Name:";
 			// 
+			// tabPage5
+			// 
+			this.tabPage5.Controls.Add(this.textBox1);
+			this.tabPage5.Controls.Add(this.LBL_About3);
+			this.tabPage5.Controls.Add(this.LBL_About2);
+			this.tabPage5.Controls.Add(this.LBL_About1);
+			this.tabPage5.Location = new System.Drawing.Point(4, 22);
+			this.tabPage5.Name = "tabPage5";
+			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage5.Size = new System.Drawing.Size(269, 296);
+			this.tabPage5.TabIndex = 5;
+			this.tabPage5.Text = "About";
+			this.tabPage5.UseVisualStyleBackColor = true;
+			// 
+			// textBox1
+			// 
+			this.textBox1.Location = new System.Drawing.Point(8, 165);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.textBox1.Size = new System.Drawing.Size(253, 123);
+			this.textBox1.TabIndex = 3;
+			this.textBox1.Text = resources.GetString("textBox1.Text");
+			// 
+			// LBL_About3
+			// 
+			this.LBL_About3.Location = new System.Drawing.Point(20, 121);
+			this.LBL_About3.Name = "LBL_About3";
+			this.LBL_About3.Size = new System.Drawing.Size(226, 41);
+			this.LBL_About3.TabIndex = 2;
+			this.LBL_About3.Text = "This program is licensed under the GNU General Public License v3 and uses some fr" +
+    "ee libraries to help make the program usable:";
+			this.LBL_About3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// LBL_About2
+			// 
+			this.LBL_About2.AutoSize = true;
+			this.LBL_About2.Location = new System.Drawing.Point(49, 69);
+			this.LBL_About2.Name = "LBL_About2";
+			this.LBL_About2.Size = new System.Drawing.Size(170, 26);
+			this.LBL_About2.TabIndex = 1;
+			this.LBL_About2.Text = "Created by Ipquarx (BLID 9291)\r\nWith help from Xalos (BLID 11239)";
+			this.LBL_About2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// LBL_About1
+			// 
+			this.LBL_About1.AutoSize = true;
+			this.LBL_About1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.LBL_About1.Location = new System.Drawing.Point(35, 19);
+			this.LBL_About1.Name = "LBL_About1";
+			this.LBL_About1.Size = new System.Drawing.Size(201, 37);
+			this.LBL_About1.TabIndex = 0;
+			this.LBL_About1.Text = "KeyUtils v0.5";
+			// 
 			// DLG_Open
 			// 
 			this.DLG_Open.DefaultExt = "dat";
 			this.DLG_Open.Filter = ".Dat file|*.dat|All files|*.*";
 			this.DLG_Open.Multiselect = true;
-			// 
-			// LBL_0
-			// 
-			this.LBL_0.AutoSize = true;
-			this.LBL_0.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-			this.LBL_0.Location = new System.Drawing.Point(73, 141);
-			this.LBL_0.Name = "LBL_0";
-			this.LBL_0.Size = new System.Drawing.Size(120, 13);
-			this.LBL_0.TabIndex = 3;
-			this.LBL_0.Text = "# Of Keydats selected:";
-			// 
-			// LBL_Num
-			// 
-			this.LBL_Num.Font = new System.Drawing.Font("Segoe UI", 9F);
-			this.LBL_Num.Location = new System.Drawing.Point(0, 154);
-			this.LBL_Num.Name = "LBL_Num";
-			this.LBL_Num.Size = new System.Drawing.Size(266, 19);
-			this.LBL_Num.TabIndex = 4;
-			this.LBL_Num.Text = "0";
-			this.LBL_Num.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// MainForm
 			// 
@@ -494,6 +560,8 @@
 			this.tabPage3.PerformLayout();
 			this.tabPage4.ResumeLayout(false);
 			this.tabPage4.PerformLayout();
+			this.tabPage5.ResumeLayout(false);
+			this.tabPage5.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -518,7 +586,7 @@
 		private System.Windows.Forms.TextBox TXT_BLID2;
 		private System.Windows.Forms.Button BTN_Gen;
 		private System.Windows.Forms.Label LBL_DYN;
-		private System.Windows.Forms.Button BTN_What2;
+		private System.Windows.Forms.Button BTN_What1;
 		private System.Windows.Forms.TextBox TXT_Extra1;
 		private System.Windows.Forms.Button BTN_Select2;
 		private System.Windows.Forms.TextBox TXT_Extra2;
@@ -537,6 +605,11 @@
 		private System.Windows.Forms.Button BTN_ConvTo;
 		private System.Windows.Forms.Label LBL_Num;
 		private System.Windows.Forms.Label LBL_0;
+		private System.Windows.Forms.TabPage tabPage5;
+		private System.Windows.Forms.Label LBL_About1;
+		private System.Windows.Forms.Label LBL_About2;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Label LBL_About3;
 
 	}
 }

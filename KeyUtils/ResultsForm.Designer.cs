@@ -69,6 +69,7 @@
 			// BTN_How
 			// 
 			this.BTN_How.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.BTN_How.Enabled = false;
 			this.BTN_How.Location = new System.Drawing.Point(2, 236);
 			this.BTN_How.Name = "BTN_How";
 			this.BTN_How.Size = new System.Drawing.Size(137, 23);

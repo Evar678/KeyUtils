@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Net.NetworkInformation;
 
+//KeyUtils Keydat Helper Library v1
+
 namespace KeyUtils
 {
 	#region Helper Classes
@@ -356,14 +358,14 @@ namespace KeyUtils
 			//Read in the unknown keydats
 			List<byte[]> UnknownKeydats = IO.readKeyDats(param, result);
 
+			//This will catch any errors thrown by IO.readKeyDats
 			if (result.completed)
 				return;
 
-			//Read in the known keydat
+			//Read in the known keydat (We have to kinda manipulate param here unfortunately)
 			param.keyDatPaths = new string[] { param.otherInfo[0] };
 			byte[] knownKeydat = IO.readKeyDats(param, result)[0];
 
-			//This will catch any errors thrown by IO.readKeyDats
 			if (result.completed)
 				return;
 
@@ -397,6 +399,7 @@ namespace KeyUtils
 					}
 				}
 
+				//Can't format unless we have the full key
 				if (!hasFailed)
 					key = formatKey(key);
 
@@ -467,6 +470,7 @@ namespace KeyUtils
 
 		#endregion Key-related Methods
 
+		//These methods can be left out if you want to re-use the library somewhere else.
 		#region Other Methods
 
 		//Courtesy of http://stackoverflow.com/a/661706/4059721
