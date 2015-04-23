@@ -280,7 +280,7 @@ namespace KeyUtils
 
 			float newestVersion = Single.Parse(Encoding.UTF8.GetString(wc.DownloadData(autoUpdateCheckUrl)));
 
-			if (newestVersion < Program.Version)
+			if (newestVersion > Program.Version)
 				MessageBox.Show("A newer version of this program is available! Please visit www.Github.com/Ipquarx/KeyUtils to download the latest version.", "New update available!");
 		}
 
