@@ -7,6 +7,7 @@ namespace KeyUtils
 {
 	static class Program
 	{
+		public static readonly float Version = 0.6F;
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>

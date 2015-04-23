@@ -1,9 +1,13 @@
 ﻿using System;
-using System.Linq;
+using System.Net;
 using System.Data;
+using System.Linq;
+using System.Text;
 using System.Drawing;
+using System.Threading;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using Zxcvbn;
 
@@ -33,6 +37,7 @@ namespace KeyUtils
 			"Please enter MAC and Processor"
 		};
 
+		string autoUpdateCheckUrl = "https://raw.githubusercontent.com/Ipquarx/KeyUtils/master/Version.txt";
 		string[] fileArray = {};
 		string file2 = String.Empty;
 		Zxcvbn.Zxcvbn strengthEstimator = new Zxcvbn.Zxcvbn();
@@ -260,6 +265,25 @@ namespace KeyUtils
 			LBL_Num.Text = num.ToString();
 		}
 
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			//Check for an update in a new thread
+			Task.Factory.StartNew(() => checkForUpdate());
+		}
+
+		private void checkForUpdate()
+		{
+			WebClient wc = new WebClient();
+
+			//If I don't include this it can take up to 30 seconds to get a webpage... Absolutely unaccepable
+			wc.Proxy = null;
+
+			float newestVersion = Single.Parse(Encoding.UTF8.GetString(wc.DownloadData(autoUpdateCheckUrl)));
+
+			if (newestVersion < Program.Version)
+				MessageBox.Show("A newer version of this program is available! Please visit www.Github.com/Ipquarx/KeyUtils to download the latest version.", "New update available!");
+		}
+
 		#endregion Other Methods
 
 		//This was a just a test of zxcvbn
@@ -268,5 +292,7 @@ namespace KeyUtils
 			var result = strengthEstimator.EvaluatePassword(TXT_1.Text);
 			LBL_Entropy.Text = result.Entropy.ToString("0.0");
 		}
+
+		
 	}
 }

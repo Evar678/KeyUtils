@@ -30,7 +30,25 @@ Shown above is a screenshot of the main interface. Here is an explanation of eve
 
 6. The decrypt button. This will start the decryption process.
 
+7. The tabs bar. Click on any of the tabs to show that tab page.
+
 
 Features
 ========
 
+- 3 decryption modes: 
+    - The first (and default) mode allows you to decrypt the keydat from your own blockland installation, assuming you can still play the game normally.
+    - The second mode allows you to decrypt multiple keydats made on the same computer, if you have a keydat to which you know the key it contains.
+    - The third mode allows you to experiment around with keydat decryption. You input a raw MAC address and a processor name (Case sensitive) and it outputs the raw decrypted result in hexadecimal.
+- Fake key generator (Just to clarify... They don't work. It's theoretically possible for them to work, but the chances are... 0.00000000000000008%. Sooo... Not that good.)
+- Key to BLID converter
+- Check for updates automatically!
+
+
+Upcoming Features
+=================
+
+- V2 keydat format! A significantly safer way to store your key.
+- Autoupdater!
+- Save your processor name and blockland location in a config file to more easily use the program.
+- Have a suggestion? Email me! Ipquarx@Gmail.com

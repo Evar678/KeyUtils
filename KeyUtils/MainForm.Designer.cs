@@ -532,7 +532,7 @@
 			this.LBL_About1.Name = "LBL_About1";
 			this.LBL_About1.Size = new System.Drawing.Size(201, 37);
 			this.LBL_About1.TabIndex = 0;
-			this.LBL_About1.Text = "KeyUtils v0.5";
+			this.LBL_About1.Text = "KeyUtils v0.6";
 			// 
 			// DLG_Open
 			// 
@@ -551,6 +551,7 @@
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
 			this.Text = "Key.dat Utilities";
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.TAB_0.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
