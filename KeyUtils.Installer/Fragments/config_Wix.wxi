@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+	
+    <!-- Separator | Make Changes to these variables -->
+    
+    <?define ProductName="KeyUtils"?>
+    <?define ProductManufacturer="Ipquarx"?>
+    
+    <?define IconId="Key_Icon"?>
+    <?define IconSource="Resources\Key.ico"?>
+    
+    <?define TargetArchitecture="64"?>
+
+    <?define ProgramFilesFolderName="KeyUtils"?>
+    <?define StartMenuFolderId="KeyUtilsStartMenuFolder"?>
+    <?define StartMenuFolderName="KeyUtils"?>
+    
+    <?define FeatureName="KeyUtils"?>
+    <?define ComponentGroupId="KeyUtilFiles"?>
+
+
+    <!--  Versioning. These must be changed for upgrades.
+          Recompiling with newer files isn't enough -->
+
+    <?define VersionNumber="0.6.0.1" ?>
+
+    <!-- This UpgradeCode should generally that the same.
+         The installer will not recognize a previous version
+         If this changes -->
+    
+    <?define UpgradeCode="79391ED9-05C6-4516-9429-6E8B7C651343"?>
+    
+    <!-- End Separator | Don't make changes below here -->
+    
+    <?if $(var.TargetArchitecture) = "32"?>
+        <?define PFilesFolder="ProgramFilesFolder"?>
+        <?define TargetPlatform="x86"?>
+    <?else?>
+        <?define PFilesFolder="ProgramFiles64Folder"?>
+        <?define TargetPlatform="x64"?>
+    <?endif?>
+    
+    <?define IconExeId="$(var.IconId).exe"?>
+</Include>

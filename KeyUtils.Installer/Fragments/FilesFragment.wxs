@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="cmp4F9703E9ED5253396F97BBBA44B5C19E" Guid="{9D9A21F4-F25D-4522-B493-2A044F978128}" Win64="yes">
+				<Shortcut Id="scDesktopIcon" Advertise="yes" Directory="DesktopFolder" Icon="Key_Icon.exe" Name="KeyUtils" WorkingDirectory="INSTALLFOLDER" />
+				<Shortcut Id="scStartIcon" Advertise="yes" Directory="KeyUtilsStartMenuFolder" Icon="Key_Icon.exe" Name="KeyUtils" WorkingDirectory="INSTALLFOLDER" />
+				<RemoveFolder Id="RemoveStartMenuFolder" Directory="KeyUtilsStartMenuFolder" On="uninstall" />
+
+                <File Id="filFE21F3DDCD72316725F5D5C4A5245C57" KeyPath="yes" Source="$(var.MySource)\KeyUtils.exe" />
+            </Component>
+            <Component Id="cmpC5D7B159A42EC75AA3E1ADA470CB6E89" Guid="{C2EAA9E2-E146-4B8B-8BBE-9A7A1FC70435}" Win64="yes">
+                <File Id="fil094A04E45A9F3C973E94D812BA6D853C" KeyPath="yes" Source="$(var.MySource)\PWDTK.dll" />
+            </Component>
+            <Component Id="cmp00E7A767679B0B3EC80E07C098B57962" Guid="{4E6AD17B-31FF-48F2-BA87-38A45812E79B}" Win64="yes">
+                <File Id="fil0B3D1D456101D569E1B044A82CDB6273" KeyPath="yes" Source="$(var.MySource)\Zxcvbn.dll" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="KeyUtilFiles">
+            <ComponentRef Id="cmp4F9703E9ED5253396F97BBBA44B5C19E" />
+            <ComponentRef Id="cmpC5D7B159A42EC75AA3E1ADA470CB6E89" />
+            <ComponentRef Id="cmp00E7A767679B0B3EC80E07C098B57962" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>
